@@ -3,20 +3,10 @@ def stock_picker(price_list)
     buy_day = prices[0]
     sell_day = prices[0]
     profit = sell_day - buy_day
-    # puts "Buy at: " + buy_day.to_s + " Sell at: " + sell_day.to_s + " For a profit of: " + profit.to_s
     price_list.each do |buy|
-        # puts "Price list:"
-        # puts price_list
-        # puts "End list"
         prices = prices.drop(1)
         prices.each do |sell|
-            # puts "Prices list:"
-            # puts prices
-            # puts "End list"
-            # puts " " + buy.to_s + " - " + sell.to_s + " = " + (sell - buy).to_s
             if profit < (sell - buy)
-                # puts " " + buy.to_s + " - " + sell.to_s + " = " + (sell - buy).to_s
-                # puts "Buy at: " + buy.to_s + " Sell at: " + sell.to_s + " For a profit of: " + (buy - sell).to_s
                 buy_day = buy
                 sell_day = sell
                 profit = sell_day - buy_day
