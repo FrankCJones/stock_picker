@@ -1,19 +1,19 @@
 def stock_picker(price_list)
     prices = price_list
-    buy_day = prices[0]
-    sell_day = prices[0]
-    profit = sell_day - buy_day
-    price_list.each do |buy|
+    buy_day = 0
+    sell_day = 0
+    profit = price_list[sell_day] - price_list[buy_day]
+    price_list.each_with_index do |buy, i|
         prices = prices.drop(1)
-        prices.each do |sell|
+        prices.each_with_index do |sell, j|
             if profit < (sell - buy)
-                buy_day = buy
-                sell_day = sell
-                profit = sell_day - buy_day
+                buy_day = i
+                sell_day = j + i + 1
+                profit = price_list[sell_day] - price_list[buy_day]
             end
         end
     end
-    return "Buy at: " + buy_day.to_s + " Sell at: " + sell_day.to_s + " For a profit of: " + profit.to_s
+    return [buy_day, sell_day]
 end
 
 stock_picker([1,2,3]) # Buy at 1 and sell at 3 for a profit of 2
